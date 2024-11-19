@@ -1,4 +1,4 @@
-from Utils import bye
+import Utils
 def main_2():
-    bye()
-print(bye)
+
+
