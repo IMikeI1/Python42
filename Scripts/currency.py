@@ -39,15 +39,17 @@ def parse_HTML(html: str):
             "value": value
         }
         return courses
-def write_date_to_json(data: dict) -> None
-    with open('cor')
+def write_data_to_json(data: dict) -> None:
+    with open("courses.json", "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=2, ensure_ascii=False)
 
-        pass
-
-
+def get_data_from_json(file_path: str) -> str:
+    with open(file_path, "r", encoding="utf-8") as file:
+        data = json.load(file)
+    return data
 
 url = "https://www.alta.ru/currency/"
 html = get_HTML(url)
 if html:
-    parse_HTML(html)
-# почитать про статус-код (400 - ошибки на стороне клиента, 500 - ошибки на стороне сервера)
+    courses = parse_HTML(html)
+    write_data_to_json(data=courses)
