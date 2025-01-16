@@ -9,6 +9,7 @@
 Инкапсуляция - механизм, позволяющий скрывать внутренние детали реализации объекта
 и предоставлять доступ к ним только через определённые методы, чтобы защитить
 данные и контролировать доступ к ним;
+
 """
 
 class Car:
@@ -70,13 +71,45 @@ class Car:
         else:
             raise ValueError('Неправильный цвет')
 
+    # Getter для получение значения скорости
+
+    @property
+    def speed(self):
+        return self.__speed
+    @speed.setter
+    def speed(self, value):
+        if value > 300:
+            raise ValueError("Max Speed = 300")
+        self.__speed = value
+
+
+class Truck(Car):
+    # указывается характеристики родительские класса и новые классы дочерниго класса
+    def __init__(self, brand, model, year, power, capasity, axles, currency="RUB"):
+        # вызываем конструктор родительского класса с его параметрами через функцию super()
+        super().__init__(brand, model, year, power, currency="RUB")
+        self.capasity = capasity
+        self.axles = axles
+        self.__speed = 200
+
+    def tilt_trailer(self):
+        print(f"{self.brand} {self.model}")
+
 car_audi = Car(brand="Audi", model="A6", year=2022, power=249)
 car_bmw = Car(brand="BMW", model="X5", year=2022, power=349)
-
-car_audi.power_off()
-car_audi.go()
-car_audi.turn(direction="right")
-car_audi.power_on()
-car_audi.go()
-car_audi.turn(direction="right")
-car_audi.power_off()
+print(car_bmw.speed)
+truck = Truck(brand="Volvo", model="XXX", year=2019, power=700, capasity=4000, axles=4)
+truck.power_on()
+truck.tilt_trailer()
+truck.power_off()
+truck.display_color()
+truck.display_speed()
+print(dir(truck))
+# car_bmw.speed = 300
+# car_audi.power_off()
+# car_audi.go()
+# car_audi.turn(direction="right")
+# car_audi.power_on()
+# car_audi.go()
+# car_audi.turn(direction="right")
+# car_audi.power_off()
