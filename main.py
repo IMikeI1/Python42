@@ -1,16 +1,15 @@
-# This is a sample Python script.
+from api_library import Book, Library
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+book_1 = Book(title="Капитанская дочка", author="А. С. Пушкин", year=1836, genre="Роман")
 
+book_2 = Book(title="Герой нашего времени", author="М. Ю. Лермонтов", year=1836, genre="Роман")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+library = Library()
 
+library.add_book(book_1)
+library.add_book(book_2)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+books = library.get_book()
+for id_, book in books.items():
+    print(book.get_info())
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
